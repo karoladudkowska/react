@@ -18,7 +18,7 @@ class Counter extends Component {
         this.state = {
             counterValue: this.props.initValue,
             showClock: true,
-            stepValue: this.props.stepValue,
+            stepValue: 3,
         };
     }
 
@@ -57,6 +57,11 @@ class Counter extends Component {
     // });
     // }
 
+    setStepValue = (inputValue) => {
+
+        this.setState({ stepValue: parseFloat(inputValue) })
+    }
+
     toggleClock = () => {
         this.setState((prevState) => {
             return ({
@@ -84,7 +89,7 @@ class Counter extends Component {
                 <Display displayValue={this.state.counterValue} />
                 <ButtonsPanel buttonMethod={this.changeValue} />
                 {clockElement}
-                <Step stepValue={this.state.stepValue} />
+                <Step stepValue={this.state.stepValue} updateStep={this.setStepValue} />
 
             </div >
 

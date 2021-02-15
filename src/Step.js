@@ -4,42 +4,19 @@ import './Step.css';
 
 class Step extends Component {
 
-    constructor(props) {
-        super(props);
+    setValue = () => {
+        this.props.updateStep(e.target.value);
 
-        this.state = {
-            // stepValue: 5
-
-
-        };
-
-        console.log(`Initialization lifeCycle: constructor (props)`);
-    }
-
-    componentDidMount() {
-
-
-        console.log(`Mounting lifeCycle: componentDidMount()`);
-    }
-
-    componentDidUpdate() {
-        console.log(`Updation lifeCycle: componentDidUpdate() `);
-    }
-
-    componentWillUnmount() {
-
-        console.log(`UnMounting lifeCycle: componentWillUnmount()`);
 
     }
-
-
 
     render() {
 
         return (
             <div className="step">
-                <button>Zwiększ o X</button>
-                <input type="number" ref={this.textInput} onChange={this.Change} />
+                <button>Zwiększ o {this.props.stepValue}</button>
+                <input type="number" value={this.props.stepValue} onChange={(e) => this.props.updateStep(e.target.value)} />
+
                 {/* <input ref={(data) => { this._inputStep = data }} type="number" /> */}
 
 
