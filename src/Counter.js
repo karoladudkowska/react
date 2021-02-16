@@ -32,12 +32,19 @@ class Counter extends Component {
             let currentCounterValue = prevState.counterValue;
 
             if (action === 'add') {
-                currentCounterValue += 1;
+                currentCounterValue += this.state.stepValue;
 
             } else if (action === 'reinit') {
                 currentCounterValue = prevProps.initValue;
 
-            } else {
+            } else if (action === 'zwieksz') {
+                currentCounterValue += this.state.stepValue;
+
+            }
+
+
+
+            else {
                 currentCounterValue = 0;
 
             }
@@ -61,6 +68,27 @@ class Counter extends Component {
 
         this.setState({ stepValue: parseFloat(inputValue) })
     }
+
+    buttonStepMethod = (action) => {
+
+        this.setState((prevState, prevProps) => {
+            let currentCounterValue = prevState.counterValue;
+
+
+            if (action === 'zwieksz') {
+                currentCounterValue += this.state.stepValue;
+
+            }
+
+            return (
+                {
+                    counterValue:
+                        currentCounterValue
+                });
+
+        });
+    }
+
 
     toggleClock = () => {
         this.setState((prevState) => {
@@ -89,7 +117,7 @@ class Counter extends Component {
                 <Display displayValue={this.state.counterValue} />
                 <ButtonsPanel buttonMethod={this.changeValue} />
                 {clockElement}
-                <Step stepValue={this.state.stepValue} updateStep={this.setStepValue} />
+                <Step buttonStepMethod={this.changeValue} stepValue={this.state.stepValue} updateStep={this.setStepValue} />
 
             </div >
 
