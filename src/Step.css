@@ -1,5 +1,14 @@
 .step button {
     border: none;
-    color: blue;
-    background-color: white
+    color: white;
+    background-color: #0066FF;
+    margin: 10px;
+    
+}
+
+.step button:hover {
+    background-color: #003399;
+    border: 1px solid #003399;
+    cursor: pointer;
+    outline: 0;
 }

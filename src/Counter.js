@@ -32,17 +32,12 @@ class Counter extends Component {
             let currentCounterValue = prevState.counterValue;
 
             if (action === 'add') {
-                currentCounterValue += this.state.stepValue;
+                currentCounterValue += 1;
 
             } else if (action === 'reinit') {
                 currentCounterValue = prevProps.initValue;
 
-            } else if (action === 'zwieksz') {
-                currentCounterValue += this.state.stepValue;
-
             }
-
-
 
             else {
                 currentCounterValue = 0;
@@ -69,22 +64,13 @@ class Counter extends Component {
         this.setState({ stepValue: parseFloat(inputValue) })
     }
 
-    buttonStepMethod = (action) => {
+    buttonStepMethod = () => {
 
-        this.setState((prevState, prevProps) => {
-            let currentCounterValue = prevState.counterValue;
+        this.setState((prevState) => {
+            // let currentCounterValue = prevState.counterValue;
+            // currentCounterValue += this.state.stepValue;
 
-
-            if (action === 'zwieksz') {
-                currentCounterValue += this.state.stepValue;
-
-            }
-
-            return (
-                {
-                    counterValue:
-                        currentCounterValue
-                });
+            return ({ counterValue: prevState.counterValue + this.state.stepValue });
 
         });
     }
@@ -117,7 +103,7 @@ class Counter extends Component {
                 <Display displayValue={this.state.counterValue} />
                 <ButtonsPanel buttonMethod={this.changeValue} />
                 {clockElement}
-                <Step buttonStepMethod={this.changeValue} stepValue={this.state.stepValue} updateStep={this.setStepValue} />
+                <Step buttonStepMethod={this.buttonStepMethod} stepValue={this.state.stepValue} updateStep={this.setStepValue} />
 
             </div >
 
@@ -125,7 +111,6 @@ class Counter extends Component {
         )
     }
 }
-
 
 export default Counter;
 
@@ -165,7 +150,7 @@ export default Counter;
 
 // export default Counter;
 
-{/* // function Counter(props) { */ }
+/* // function Counter(props) { */
 
 //     let randomNumber = Math.floor(Math.random() * (108
 //         - 1 + 1) + 1);
